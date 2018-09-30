@@ -115,6 +115,51 @@ print("Beginning bubblesort")
 print(bubbleSort(nums))
 print("End bubbleSort")
 
+def quickSort(array, low, high):
+    '''
+    A sorting algorithm bosting O(nlogn) average runtime and O(n^2)
+    worst case runtime, it is another divide and conquer sorting
+    algorithm involving a pivot point.
+    '''
+
+    if low < high:
+        partitionIndex = partition(array, low, high)
+
+        quickSort(array, low, partitionIndex -1)
+        quickSort(array, partitionIndex + 1, high)
+
+def partition(array, low, high):
+    '''
+    The helper function for quickSort. Here, we 
+    select the last element of the list as the pivot value. Then,
+    we divide the list based on the pivot value, and return
+    the index of the pivot value
+    '''
+    #select the last value as the pivot value
+    pivotValue = array[high]
+
+    #this will be used as an index for comparing values
+    i = low - 1
+
+    #iterate through the low to high values
+    for j in range(low, high):
+        '''
+        If the value of array[j] is less than the pivot value,
+        then we will 
+        '''
+        print("Before swap:" ,array[low:high + 1])
+        if array[j] <= pivotValue:
+            i += 1
+            array[i], array[j] = array[j], array[i]
+            print(i, j, "after swap:" ,array[low:high + 1])
+    array[i + 1],array[high] = array[high], array[i + 1]
+    return i + 1
+nums2 = [10, 29, 99,34, 42, 9, 22, 19, 50]
+print(nums2)
+print("Beginning QuickSort")
+print(quickSort(nums2, 0, len(nums2)-1))
+print(nums2)
+print("ended quickSort")
 
 
 
